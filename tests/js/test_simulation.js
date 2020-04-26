@@ -2,7 +2,7 @@
 
 let deck = new Deck();
 let hand = new Hand(deck);
-let simulation = new Simulation(deck, hand, rank);
+let simulation = new Simulation(deck, hand);
 
 hand.updateCard('card1', 'AD');
 hand.updateCard('card2', 'AS');

@@ -7,6 +7,14 @@ let Player = class {
   }
 
   bestHand() {
+    // Sort cards in each hand
+    // this.hands.map((hand) => {
+    //
+    // });
+
+    // Sort hands
+    this.hands.sort(Rank.compareHands);
+
     return this.hands[0];
   }
 

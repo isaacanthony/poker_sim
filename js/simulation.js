@@ -1,10 +1,9 @@
 'use strict';
 
 let Simulation = class {
-  constructor(deck, hand, rank) {
+  constructor(deck, hand) {
     this.deck = deck;
     this.hand = hand;
-    this.rank = rank;
   }
 
   run() {
