@@ -60,14 +60,16 @@ let Deck = class {
     };
 
     this.cards = Object.keys(this.urls);
+    this.index = 0;
   }
 
   shuffle() {
     console.log('shuffling');
+    this.index = 0;
   }
 
-  getRandomCard() {
-    console.log('random card');
+  dealCard() {
+    return this.cards[this.index += 1];
   }
 
   getUrl(card) {

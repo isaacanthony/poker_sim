@@ -1,7 +1,8 @@
 # poker_sim
 
 ## TODO
-- [ ] Show random cards in layout
+- [x] Show cards in layout
+- [ ] Shuffle cards
 - [ ] Deal random two cards to player
 - [ ] Allow player to specify two cards
 - [ ] Allow player to specify flop
