@@ -71,6 +71,7 @@ let Rank = class {
 
   straightValue(h) {
     let cValues = h.map(this.cardValue);
+
     if (JSON.stringify(cValues) === JSON.stringify([2, 3, 4, 5, 14]))
       return 1 + 2 + 3 + 4 + 5;
 
@@ -78,7 +79,7 @@ let Rank = class {
       if (cValues[i] !== cValues[i + 1] - 1) return 0;
     }
 
-    return cValues.reduce((total, cValue) => { return total + cValue; }, 0);
+    return this.highCardValue(h);
   }
 
   flushValue(h) {
@@ -86,17 +87,21 @@ let Rank = class {
       if (this.cardSuit(h[i]) !== this.cardSuit(h[i + 1])) return 0;
     }
 
-    return h.map(this.cardValue).reduce((total, cValue) => { return total + cValue; }, 0);
+    return this.highCardValue(h);
   }
 
-  isFullHouse(h) {
+  fullHouseValue(h) {
     if (this.cardValue(h[0]) === this.cardValue(h[1]) &&
-        this.cardValue(h[0]) === this.cardValue(h[2]) &&
-        this.cardValue(h[3]) === this.cardValue(h[4])) return true;
-    if (this.cardValue(h[4]) === this.cardValue(h[3]) &&
-        this.cardValue(h[4]) === this.cardValue(h[2]) &&
-        this.cardValue(h[1]) === this.cardValue(h[0])) return true;
-    return false;
+      this.cardValue(h[0]) === this.cardValue(h[2]) &&
+      this.cardValue(h[3]) === this.cardValue(h[4]))
+      return this.highCardValue(h);
+
+    if (this.cardValue(h[0]) === this.cardValue(h[1]) &&
+      this.cardValue(h[2]) === this.cardValue(h[3]) &&
+      this.cardValue(h[2]) === this.cardValue(h[4]))
+      return this.highCardValue(h);
+
+    return 0;
   }
 
   isFourKind(h) {

@@ -43,3 +43,8 @@ assert(rank.straightValue(['2H', '3C', '4S', '5S', 'AD']) === 1 + 2 + 3 + 4 + 5)
 // Test flushValue()
 assert(rank.flushValue(['8H', '10H', 'JS', 'JH', 'QH']) === 0);
 assert(rank.flushValue(['8H', '10H', 'JH', 'QH', 'KH']) === 8 + 10 + 11 + 12 + 13);
+
+// Test fullHouseValue()
+assert(rank.fullHouseValue(['4S', '4C', '4D', 'JH', 'QH']) === 0);
+assert(rank.fullHouseValue(['4S', '4C', '4D', 'JH', 'JS']) === 4 + 4 + 4 + 11 + 11);
+assert(rank.fullHouseValue(['4S', '4C', 'JD', 'JH', 'JS']) === 4 + 4 + 11 + 11 + 11);
