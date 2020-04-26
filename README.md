@@ -2,12 +2,12 @@
 
 ## TODO
 - [x] Show cards in layout
-- [ ] Shuffle cards
-- [ ] Deal random two cards to player
-- [ ] Allow player to specify two cards
-- [ ] Allow player to specify flop
-- [ ] Allow player to specify turn
-- [ ] Allow player to specify river
+- [x] Allow player to specify two cards
+- [x] Allow player to specify flop
+- [x] Allow player to specify turn
+- [x] Allow player to specify river
+- [ ] Shuffle remaining cards
+- [ ] Specify players that have folded
 
 ## Scraping Playing Card Icons
 https://commons.wikimedia.org/wiki/Category:SVG_playing_cards

@@ -18,24 +18,25 @@ let Hand = class {
   }
 
   reset() {
-    this.deck.shuffle();
-    this.assignCard('card1', this.deck.dealCard());
-    this.assignCard('card2', this.deck.dealCard());
-    this.assignCard('flop1', null);
-    this.assignCard('flop2', null);
-    this.assignCard('flop3', null);
-    this.assignCard('turn', null);
-    this.assignCard('river', null);
+    Object.keys(this.cards).forEach((cardType) => {
+      this.resetCard(cardType);
+    });
   }
 
-  assignCard(cardType, card) {
-    this.cards[cardType] = card;
-    let el = document.querySelector('.' + cardType);
+  resetCard(cardType) {
+    this.cards[cardType] = null;
+    document.querySelector(`.${cardType}`).src = this.deck.back;
+  }
 
-    if (card) {
-      el.src = this.deck.getUrl(card);
+  updateCard(cardType) {
+    let cardValue = document.querySelector(`.${cardType}-input`).value.toUpperCase();
+
+    if (this.deck.getUrl(cardValue)) {
+      this.cards[cardType] = cardValue;
+      document.querySelector(`.${cardType}`).src = this.deck.getUrl(cardValue);
     } else {
-      el.src = this.deck.back;
+      this.cards[cardType] = null;
+      document.querySelector(`.${cardType}`).src = this.deck.back;
     }
   }
 }

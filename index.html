@@ -39,11 +39,47 @@
       </div>
 
       <div class="col-6">
-        <img class="flop1" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Card_back_17.svg/83px-Card_back_17.svg.png">
-        <img class="flop2" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Card_back_17.svg/83px-Card_back_17.svg.png">
-        <img class="flop3" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Card_back_17.svg/83px-Card_back_17.svg.png">
-        <img class="turn" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Card_back_17.svg/83px-Card_back_17.svg.png">
-        <img class="river" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Card_back_17.svg/83px-Card_back_17.svg.png">
+        <div class="row justify-content-md-center">
+          <div class="col-2">
+            <img class="flop1" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Card_back_17.svg/83px-Card_back_17.svg.png">
+
+            <div class="form-group mt-1">
+              <input class="flop1-input form-control input-sm" type="text" onchange="hand.updateCard('flop1')"></input>
+            </div>
+          </div>
+
+          <div class="col-2">
+            <img class="flop2" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Card_back_17.svg/83px-Card_back_17.svg.png">
+
+            <div class="form-group mt-1">
+              <input class="flop2-input form-control input-sm" type="text" onchange="hand.updateCard('flop2')"></input>
+            </div>
+          </div>
+
+          <div class="col-2">
+            <img class="flop3" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Card_back_17.svg/83px-Card_back_17.svg.png">
+
+            <div class="form-group mt-1">
+              <input class="flop3-input form-control input-sm" type="text" onchange="hand.updateCard('flop3')"></input>
+            </div>
+          </div>
+
+          <div class="col-2">
+            <img class="turn" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Card_back_17.svg/83px-Card_back_17.svg.png">
+
+            <div class="form-group mt-1">
+              <input class="turn-input form-control input-sm" type="text" onchange="hand.updateCard('turn')"></input>
+            </div>
+          </div>
+
+          <div class="col-2">
+            <img class="river" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Card_back_17.svg/83px-Card_back_17.svg.png">
+
+            <div class="form-group mt-1">
+              <input class="river-input form-control input-sm" type="text" onchange="hand.updateCard('river')"></input>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div class="col">
@@ -59,8 +95,23 @@
       </div>
 
       <div class="col-6">
-        <img class="card1" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Card_back_17.svg/83px-Card_back_17.svg.png">
-        <img class="card2" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Card_back_17.svg/83px-Card_back_17.svg.png">
+        <div class="row justify-content-md-center">
+          <div class="col-2">
+            <img class="card1" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Card_back_17.svg/83px-Card_back_17.svg.png">
+
+            <div class="form-group mt-1">
+              <input class="card1-input form-control input-sm" type="text" onchange="hand.updateCard('card1')"></input>
+            </div>
+          </div>
+
+          <div class="col-2">
+            <img class="card2" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Card_back_17.svg/83px-Card_back_17.svg.png">
+
+            <div class="form-group mt-1">
+              <input class="card2-input form-control input-sm" type="text" onchange="hand.updateCard('card2')"></input>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div class="col">
