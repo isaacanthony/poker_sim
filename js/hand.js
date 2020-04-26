@@ -25,6 +25,7 @@ let Hand = class {
 
   resetCard(cardType) {
     this.cards[cardType] = null;
+    document.querySelector(`.${cardType}-input`).value = null;
     document.querySelector(`.${cardType}`).src = this.deck.back;
   }
 
@@ -33,6 +34,7 @@ let Hand = class {
 
     if (this.deck.getUrl(cardValue)) {
       this.cards[cardType] = cardValue;
+      document.querySelector(`.${cardType}-input`).value = cardValue;
       document.querySelector(`.${cardType}`).src = this.deck.getUrl(cardValue);
     } else {
       this.cards[cardType] = null;

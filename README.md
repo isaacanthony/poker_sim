@@ -6,8 +6,10 @@
 - [x] Allow player to specify flop
 - [x] Allow player to specify turn
 - [x] Allow player to specify river
-- [ ] Shuffle remaining cards
+- [ ] Add new hand button
+- [ ] Add fontawesome font icons
 - [ ] Specify players that have folded
+- [ ] Shuffle remaining cards
 
 ## Scraping Playing Card Icons
 https://commons.wikimedia.org/wiki/Category:SVG_playing_cards
