@@ -10,7 +10,8 @@ let Rank = class {
     diff = this.compareHand(this.straightFlushValue(h1), this.straightFlushValue(h2));
     if (diff) return diff;
 
-    return diff;
+    // High card value
+    return compareHand(h1, h2);
   }
 
   compareHand(h1, h2) {
@@ -41,42 +42,60 @@ let Rank = class {
   pairValue(h) {
     for (let i = 0; i < 4; i++) {
       if (this.cardValue(h[i]) === this.cardValue(h[i + 1]))
-        return 2 * this.cardValue(h[i]);
+        return [h[i], h[i + 1]].concat(h.filter((c) => ![h[i], h[i + 1]].includes(c)));
     }
 
-    return 0;
+    return [];
   }
 
   twoPairValue(h) {
-    if (this.cardValue(h[0]) === this.cardValue(h[1]) &&
-      this.cardValue(h[2]) === this.cardValue(h[3]))
-      return (2 * this.cardValue(h[0])) + (2 * this.cardValue(h[2]));
+    if (this.cardValue(h[0]) === this.cardValue(h[1]) && this.cardValue(h[2]) === this.cardValue(h[3])) {
+      if (this.cardValue(h[0]) > this.cardValue(h[2]))
+        return [h[0], h[1], h[2], h[3], h[4]];
 
-    if (this.cardValue(h[0]) === this.cardValue(h[1]) &&
-      this.cardValue(h[3]) === this.cardValue(h[4]))
-      return (2 * this.cardValue(h[0])) + (2 * this.cardValue(h[3]));
+      return [h[2], h[3], h[0], h[1], h[4]];
+    }
 
-    if (this.cardValue(h[1]) === this.cardValue(h[2]) &&
-      this.cardValue(h[3]) === this.cardValue(h[4]))
-      return (2 * this.cardValue(h[1])) + (2 * this.cardValue(h[3]));
+    if (this.cardValue(h[0]) === this.cardValue(h[1]) && this.cardValue(h[3]) === this.cardValue(h[4])) {
+      if (this.cardValue(h[0]) > this.cardValue(h[3]))
+        return [h[0], h[1], h[3], h[4], h[2]];
 
-    return 0;
+      return [h[3], h[4], h[0], h[1], h[2]];
+    }
+
+    if (this.cardValue(h[1]) === this.cardValue(h[2]) && this.cardValue(h[3]) === this.cardValue(h[4])) {
+      if (this.cardValue(h[1]) > this.cardValue(h[3]))
+        return [h[1], h[2], h[3], h[4], h[0]];
+
+      return [h[3], h[4], h[1], h[2], h[0]];
+    }
+
+    return [];
   }
 
   threeKindValue(h) {
-    if (this.cardValue(h[0]) === this.cardValue(h[1]) &&
-      this.cardValue(h[0]) === this.cardValue(h[2]))
-      return 3 * this.cardValue(h[0]);
+    if (this.cardValue(h[0]) === this.cardValue(h[1]) && this.cardValue(h[0]) === this.cardValue(h[2])) {
+      if (this.cardValue(h[3]) > this.cardValue(h[4]))
+        return [h[0], h[1], h[2], h[3], h[4]];
 
-    if (this.cardValue(h[1]) === this.cardValue(h[2]) &&
-      this.cardValue(h[1]) === this.cardValue(h[3]))
-      return 3 * this.cardValue(h[1]);
+      return [h[0], h[1], h[2], h[4], h[3]];
+    }
 
-    if (this.cardValue(h[2]) === this.cardValue(h[3]) &&
-      this.cardValue(h[2]) === this.cardValue(h[4]))
-      return 3 * this.cardValue(h[2]);
+    if (this.cardValue(h[1]) === this.cardValue(h[2]) && this.cardValue(h[1]) === this.cardValue(h[3])) {
+      if (this.cardValue(h[0]) > this.cardValue(h[4]))
+        return [h[1], h[2], h[3], h[0], h[4]];
 
-    return 0;
+      return [h[1], h[2], h[3], h[4], h[0]];
+    }
+
+    if (this.cardValue(h[2]) === this.cardValue(h[3]) && this.cardValue(h[2]) === this.cardValue(h[4])) {
+      if (this.cardValue(h[0]) > this.cardValue(h[1]))
+        return [h[2], h[3], h[4], h[0], h[1]];
+
+      return [h[2], h[3], h[4], h[1], h[0]];
+    }
+
+    return [];
   }
 
   straightValue(h) {
@@ -86,7 +105,7 @@ let Rank = class {
       return 1 + 2 + 3 + 4 + 5;
 
     for (let i = 0; i < 4; i++) {
-      if (cValues[i] !== cValues[i + 1] - 1) return 0;
+      if (cValues[i] !== cValues[i + 1] - 1) return [];
     }
 
     return this.highCardValue(h);
@@ -94,7 +113,7 @@ let Rank = class {
 
   flushValue(h) {
     for (var i = 0; i < 4; i++) {
-      if (this.cardSuit(h[i]) !== this.cardSuit(h[i + 1])) return 0;
+      if (this.cardSuit(h[i]) !== this.cardSuit(h[i + 1])) return [];
     }
 
     return this.highCardValue(h);
@@ -111,7 +130,7 @@ let Rank = class {
       this.cardValue(h[2]) === this.cardValue(h[4]))
       return this.highCardValue(h);
 
-    return 0;
+    return [];
   }
 
   fourKindValue(h) {
@@ -125,13 +144,11 @@ let Rank = class {
       this.cardValue(h[1]) === this.cardValue(h[4]))
       return this.highCardValue(h);
 
-    return 0;
+    return [];
   }
 
   straightFlushValue(h) {
-    if (this.straightValue(h) && this.flushValue(h))
-      return h.reverse();
-
+    if (this.straightValue(h).length && this.flushValue(h).length) return h;
     return [];
   }
 };

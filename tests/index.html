@@ -13,7 +13,16 @@
 
   <script>
     'use strict';
-    let assert = console.assert;
+    let assertEqual = (a, b) => {
+      if (a instanceof Array) a = JSON.stringify(a);
+      if (b instanceof Array) b = JSON.stringify(b);
+
+      if (a !== b) {
+        console.log(a);
+        console.log(b);
+        console.assert(a === b);
+      }
+    };
   </script>
 
   <script src="js/test_rank.js"></script>
