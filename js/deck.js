@@ -60,18 +60,11 @@ let Deck = class {
     };
 
     this.cards = Object.keys(this.urls);
-    this.index = 0;
   }
 
   shuffle() {
-    this.index = 0;
-
     for (let j, x, i = this.cards.length; i; j = Math.floor(Math.random() * i),
       x = this.cards[--i], this.cards[i] = this.cards[j], this.cards[j] = x);
-  }
-
-  dealCard() {
-    return this.cards[this.index += 1];
   }
 
   getUrl(card) {

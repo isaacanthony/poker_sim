@@ -39,17 +39,25 @@ let Hand = class {
 
   resetCard(cardType) {
     this.cards[cardType] = null;
-    document.querySelector(`.${cardType}-input`).value = null;
-    document.querySelector(`.${cardType}`).src = this.deck.back;
+
+    if (document.querySelector(`.${cardType}-input`))
+      document.querySelector(`.${cardType}-input`).value = null;
+
+    if (document.querySelector(`.${cardType}`))
+      document.querySelector(`.${cardType}`).src = this.deck.back;
   }
 
-  updateCard(cardType) {
-    let cardValue = document.querySelector(`.${cardType}-input`).value.toUpperCase();
+  updateCard(cardType, cardValue = null) {
+    if (!cardValue) cardValue = document.querySelector(`.${cardType}-input`).value.toUpperCase();
 
     if (this.deck.getUrl(cardValue)) {
       this.cards[cardType] = cardValue;
-      document.querySelector(`.${cardType}-input`).value = cardValue;
-      document.querySelector(`.${cardType}`).src = this.deck.getUrl(cardValue);
+
+      if (document.querySelector(`.${cardType}-input`))
+        document.querySelector(`.${cardType}-input`).value = cardValue;
+
+      if (document.querySelector(`.${cardType}`))
+        document.querySelector(`.${cardType}`).src = this.deck.getUrl(cardValue);
     } else {
       this.resetCard(cardType);
     }
@@ -59,19 +67,23 @@ let Hand = class {
     this.players[playerId] = false;
 
     [`.${playerId}c1`, `.${playerId}c2`, `.${playerId}-fold`].forEach((cls) => {
-      document.querySelector(cls).classList.add('folded');
+      if (document.querySelector(cls))
+        document.querySelector(cls).classList.add('folded');
     });
 
-    document.querySelector(`.${playerId}-fold`).disabled = true;
+    if (document.querySelector(`.${playerId}-fold`))
+      document.querySelector(`.${playerId}-fold`).disabled = true;
   }
 
   resetPlayer(playerId) {
     this.players[playerId] = true;
 
     [`.${playerId}c1`, `.${playerId}c2`, `.${playerId}-fold`].forEach((cls) => {
-      document.querySelector(cls).classList.remove('folded');
+      if (document.querySelector(cls))
+        document.querySelector(cls).classList.remove('folded');
     });
 
-    document.querySelector(`.${playerId}-fold`).disabled = false;
+    if (document.querySelector(`.${playerId}-fold`))
+      document.querySelector(`.${playerId}-fold`).disabled = false;
   }
 }

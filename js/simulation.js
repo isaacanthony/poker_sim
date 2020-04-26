@@ -1,13 +1,37 @@
 'use strict';
 
 let Simulation = class {
-  constructor(hand, rank) {
+  constructor(deck, hand, rank) {
+    this.deck = deck;
     this.hand = hand;
     this.rank = rank;
   }
 
   run() {
-    let sample = ['10C', '10H', '10D', '10S', 'AS'];
-    console.log('Rank', this.rank.getScore(sample));
+    // Shuffle deck
+    this.deck.shuffle();
+    let index = 0;
+
+    // Remove already dealt cards
+    let cards = this.deck.cards.filter((card) => {
+      return !Object.values(this.hand.cards).includes(card);
+    });
+
+    // Deal cards to non-folded players
+    let players = Object.keys(this.hand.players).filter((player) => {
+      return this.hand.players[player];
+    }).reduce((hsh, player) => {
+      hsh[player] = [cards[index += 1], cards[index += 1]];
+      return hsh;
+    }, {});
+
+    // Deal flop, turn, river
+    let board = [1, 2, 3, 4, 5].map((_) => cards[index += 1])
+
+    return {
+      'cards': cards,
+      'players': players,
+      'board': board,
+    };
   }
 }
