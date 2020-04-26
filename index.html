@@ -3,16 +3,17 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Poker Simulator</title>
+  <title>&spades; Poker Simulator</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/poker.css">
 </head>
 <body>
 
   <div class="container text-center">
     <div class="row mt-4 mb-4">
       <div class="col">
-        <h1>Poker Simulator</h1>
+        <h1>&spades; Poker Simulator</h1>
       </div>
     </div>
 
@@ -20,16 +21,31 @@
       <div class="col">
         <img class="p1c1" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Card_back_17.svg/83px-Card_back_17.svg.png">
         <img class="p1c2" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Card_back_17.svg/83px-Card_back_17.svg.png">
+        <br>
+
+        <button type="button" class="p1-fold btn btn-danger mt-1" onclick="hand.fold('p1')">
+          <i class="fa fa-trash"></i> Folded
+        </button>
       </div>
 
       <div class="col-6">
         <img class="p2c1" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Card_back_17.svg/83px-Card_back_17.svg.png">
         <img class="p2c2" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Card_back_17.svg/83px-Card_back_17.svg.png">
+        <br>
+
+        <button type="button" class="p2-fold btn btn-danger mt-1" onclick="hand.fold('p2')">
+          <i class="fa fa-trash"></i> Folded
+        </button>
       </div>
 
       <div class="col">
         <img class="p3c1" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Card_back_17.svg/83px-Card_back_17.svg.png">
         <img class="p3c2" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Card_back_17.svg/83px-Card_back_17.svg.png">
+        <br>
+
+        <button type="button" class="p3-fold btn btn-danger mt-1" onclick="hand.fold('p3')">
+          <i class="fa fa-trash"></i> Folded
+        </button>
       </div>
     </div>
 
@@ -37,6 +53,11 @@
       <div class="col">
         <img class="p4c1" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Card_back_17.svg/83px-Card_back_17.svg.png">
         <img class="p4c2" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Card_back_17.svg/83px-Card_back_17.svg.png">
+        <br>
+
+        <button type="button" class="p4-fold btn btn-danger mt-1" onclick="hand.fold('p4')">
+          <i class="fa fa-trash"></i> Folded
+        </button>
       </div>
 
       <div class="col-6">
@@ -86,6 +107,11 @@
       <div class="col">
         <img class="p5c1" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Card_back_17.svg/83px-Card_back_17.svg.png">
         <img class="p5c2" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Card_back_17.svg/83px-Card_back_17.svg.png">
+        <br>
+
+        <button type="button" class="p5-fold btn btn-danger mt-1" onclick="hand.fold('p5')">
+          <i class="fa fa-trash"></i> Folded
+        </button>
       </div>
     </div>
 
@@ -93,6 +119,11 @@
       <div class="col">
         <img class="p6c1" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Card_back_17.svg/83px-Card_back_17.svg.png">
         <img class="p6c2" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Card_back_17.svg/83px-Card_back_17.svg.png">
+        <br>
+
+        <button type="button" class="p6-fold btn btn-danger mt-1" onclick="hand.fold('p6')">
+          <i class="fa fa-trash"></i> Folded
+        </button>
       </div>
 
       <div class="col-6">
@@ -118,6 +149,11 @@
       <div class="col">
         <img class="p7c1" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Card_back_17.svg/83px-Card_back_17.svg.png">
         <img class="p7c2" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Card_back_17.svg/83px-Card_back_17.svg.png">
+        <br>
+
+        <button type="button" class="p7-fold btn btn-danger mt-1" onclick="hand.fold('p7')">
+          <i class="fa fa-trash"></i> Folded
+        </button>
       </div>
     </div>
 

@@ -8,7 +8,7 @@
 - [x] Allow player to specify river
 - [x] Add new hand button
 - [x] Add fontawesome font icons
-- [ ] Specify players that have folded
+- [x] Specify players that have folded
 - [ ] Shuffle remaining cards
 
 ## Scraping Playing Card Icons
