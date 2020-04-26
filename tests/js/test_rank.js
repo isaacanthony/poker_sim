@@ -39,3 +39,7 @@ assert(rank.threeKindValue(['4H', '6D', 'JS', 'JH', 'JC']) === 11 + 11 + 11);
 assert(rank.straightValue(['7H', '9H', '10D', 'JH', 'QD']) === 0);
 assert(rank.straightValue(['7H', '8H', '9D', '10H', 'JD']) === 7 + 8 + 9 + 10 + 11);
 assert(rank.straightValue(['2H', '3C', '4S', '5S', 'AD']) === 1 + 2 + 3 + 4 + 5);
+
+// Test flushValue()
+assert(rank.flushValue(['8H', '10H', 'JS', 'JH', 'QH']) === 0);
+assert(rank.flushValue(['8H', '10H', 'JH', 'QH', 'KH']) === 8 + 10 + 11 + 12 + 13);

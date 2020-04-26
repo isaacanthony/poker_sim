@@ -81,11 +81,12 @@ let Rank = class {
     return cValues.reduce((total, cValue) => { return total + cValue; }, 0);
   }
 
-  isFlush(h) {
+  flushValue(h) {
     for (var i = 0; i < 4; i++) {
-      if (this.cardSuit(h[i]) !== this.cardSuit(h[i + 1])) return false;
+      if (this.cardSuit(h[i]) !== this.cardSuit(h[i + 1])) return 0;
     }
-    return true;
+
+    return h.map(this.cardValue).reduce((total, cValue) => { return total + cValue; }, 0);
   }
 
   isFullHouse(h) {
