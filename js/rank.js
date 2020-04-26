@@ -15,16 +15,17 @@ let Rank = class {
     return {text:'High Card<br>(+0)',coins:0};
   }
 
-  cardValue(h) {
-    return h.slice(0, -1);
+  cardValue(card) {
+    return card.slice(0, -1);
   }
 
   cardNumericValue(card) {
-    return {'J': 11, 'Q': 12, 'K': 13, 'A': 14}[card] || card * 1;
+    let cardValue = this.cardValue(card);
+    return {'J': 11, 'Q': 12, 'K': 13, 'A': 14}[cardValue] || cardValue * 1;
   }
 
-  cardSuit(h) {
-    return h.slice(-1);
+  cardSuit(card) {
+    return card.slice(-1);
   }
 
   highCardValue(hand) {
