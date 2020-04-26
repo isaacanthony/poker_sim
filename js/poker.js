@@ -1,2 +1,4 @@
 'use strict';
-console.log('hello world!');
+
+let deck = new Deck();
+console.log(deck.cards);
