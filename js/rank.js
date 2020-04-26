@@ -25,7 +25,7 @@ let Rank = class {
   }
 
   highCardValue(h) {
-    return h.reduce((total, c) => {return total + this.cardValue(c)}, 0);
+    return h.reduce((total, c) => { return total + this.cardValue(c); }, 0);
   }
 
   pairValue(h) {
@@ -33,6 +33,7 @@ let Rank = class {
       if (this.cardValue(h[i]) === this.cardValue(h[i + 1]))
         return 2 * this.cardValue(h[i]);
     }
+
     return 0;
   }
 
@@ -68,27 +69,16 @@ let Rank = class {
     return 0;
   }
 
-  isStraight(h) {
-    var values = [];
-    for (var i = 0; i < 5; i++) {
-      var temp = this.cardValue(h[i]);
-      switch (temp) {
-        case '0': temp = 10; break;
-        case 'J': temp = 11; break;
-        case 'Q': temp = 12; break;
-        case 'K': temp = 13; break;
-        case 'A': temp = 1; break;
-        default: temp = temp * 1; break;
-      }
-      values[i] = temp;
+  straightValue(h) {
+    let cValues = h.map(this.cardValue);
+    if (JSON.stringify(cValues) === JSON.stringify([2, 3, 4, 5, 14]))
+      return 1 + 2 + 3 + 4 + 5;
+
+    for (let i = 0; i < 4; i++) {
+      if (cValues[i] !== cValues[i + 1] - 1) return 0;
     }
-    values = values.sort(function(a, b){return a-b;});
-    if (values[0] === 1 && values[1] === 10 && values[2] === 11 &&
-        values[3] === 12 && values[4] === 13) return true;
-    for (var i = 0; i < 4; i++) {
-      if (values[i] + 1 !== values[i + 1]) return false;
-    }
-    return true;
+
+    return cValues.reduce((total, cValue) => { return total + cValue; }, 0);
   }
 
   isFlush(h) {
