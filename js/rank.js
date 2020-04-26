@@ -124,4 +124,4 @@ let Rank = class {
 
     return 0;
   }
-}
+};

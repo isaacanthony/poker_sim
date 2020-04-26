@@ -70,4 +70,4 @@ let Deck = class {
   getUrl(card) {
     return this.urls[card];
   }
-}
+};

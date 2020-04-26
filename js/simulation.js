@@ -34,4 +34,4 @@ let Simulation = class {
       'board': board,
     };
   }
-}
+};

@@ -86,4 +86,4 @@ let Hand = class {
     if (document.querySelector(`.${playerId}-fold`))
       document.querySelector(`.${playerId}-fold`).disabled = false;
   }
-}
+};
