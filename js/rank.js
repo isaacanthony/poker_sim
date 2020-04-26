@@ -10,6 +10,10 @@ let Rank = class {
     diff = this.compareHand(this.straightFlush(h1), this.straightFlush(h2));
     if (diff) return diff;
 
+    // Four kind
+    diff = this.compareHand(this.fourKind(h1), this.fourKind(h2));
+    if (diff) return diff;
+
     // Full house
     diff = this.compareHand(this.fullHouse(h1), this.fullHouse(h2));
     if (diff) return diff;
@@ -157,12 +161,12 @@ let Rank = class {
     if (this.cardValue(h[0]) === this.cardValue(h[1]) &&
       this.cardValue(h[0]) === this.cardValue(h[2]) &&
       this.cardValue(h[0]) === this.cardValue(h[3]))
-      return this.highcardValue(h);
+      return [h[0], h[1], h[2], h[3], h[4]];
 
     if (this.cardValue(h[1]) === this.cardValue(h[2]) &&
       this.cardValue(h[1]) === this.cardValue(h[3]) &&
       this.cardValue(h[1]) === this.cardValue(h[4]))
-      return this.highcardValue(h);
+      return [h[1], h[2], h[3], h[4], h[0]];
 
     return [];
   }

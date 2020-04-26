@@ -100,36 +100,55 @@ assertEqual(
 
 // Test fourKind()
 assertEqual(rank.fourKind(['5C', '4H', '3C', '3S', '3H']), []);
-// assertEqual(rank.fourKind(['3S', '3H', '3C', '3D', '5H']) === 3 + 3 + 3 + 3 + 5);
-// assertEqual(rank.fourKind(['3S', '5D', '5S', '5C', '5H']) === 3 + 5 + 5 + 5 + 5);
+
+assertEqual(
+  rank.fourKind(['5H', '3S', '3H', '3C', '3D']),
+  ['3S', '3H', '3C', '3D', '5H'],
+);
+
+assertEqual(
+  rank.fourKind(['5D', '5S', '5C', '5H', '3S']),
+  ['5D', '5S', '5C', '5H', '3S'],
+);
+
+// Test straightFlush(): no straight, no flush
+assertEqual(rank.straightFlush(['QS', 'QD', 'JD', '9H', '8H']), []);
+
+// Test straightFlush(): straight, no flush
+assertEqual(
+  rank.straightFlush(['QS', 'JD', '10D', '9H', '8H']),
+  [],
+);
+
+// Test straightFlush(): no straight, flush
+assertEqual(
+  rank.straightFlush(['KH', 'QH', 'JH', '9H', '8H']),
+  [],
+);
 
 // Test straightFlush()
-assertEqual(rank.straightFlush(['QS', 'QD', 'JD', '9H', '8H']), []); // no straight, no flush
-// assertEqual(rank.straightFlush(['8H', '9H', '10D', 'JD', 'QS']).length === 0); // straight, no flush
-// assertEqual(rank.straightFlush(['8H', '9H', 'JH', 'QH', 'KH']).length === 0); // no straight, flush
-
-// assertEqual(
-//   rank.straightFlush(['QH', 'JH', '10H', '9H', '8H']),
-//   ['QH', 'JH', '10H', '9H', '8H'],
-// );
+assertEqual(
+  rank.straightFlush(['QH', 'JH', '10H', '9H', '8H']),
+  ['QH', 'JH', '10H', '9H', '8H'],
+);
 
 // Test compareHands(): straight flush
-// assertEqual(
-//   rank.compareHands(['QH', 'JH', '10H', '9H', '8H'], ['JS', '8H', '5D', '3H', '2S']),
-//   -1,
-// );
-//
-// assertEqual(
-//   rank.compareHands(['2S', '3H', '5D', '8H', 'JS'], ['8H', '9H', '10H', 'JH', 'QH']),
-//   1,
-// );
-//
-// assertEqual(
-//   rank.compareHands(['9H', '10H', 'JH', 'QH', 'KH'], ['8H', '9H', '10H', 'JH', 'QH']),
-//   -1,
-// );
-//
-// assertEqual(
-//   rank.compareHands(['7H', '8H', '9H', '10H', 'JH'], ['8H', '9H', '10H', 'JH', 'QH']),
-//   1,
-// );
+assertEqual(
+  rank.compareHands(['QH', 'JH', '10H', '9H', '8H'], ['JS', '8H', '5D', '3H', '2S']),
+  -1,
+);
+
+assertEqual(
+  rank.compareHands(['JS', '8H', '5D', '3H', '2S'], ['QH', 'JH', '10H', '9H', '8H']),
+  1,
+);
+
+assertEqual(
+  rank.compareHands(['KH', 'QH', 'JH', '10H', '9H'], ['QH', 'JH', '10H', '9H', '8H']),
+  -1,
+);
+
+assertEqual(
+  rank.compareHands(['JH', '10H', '9H', '8H', '7H'], ['QH', 'JH', '10H', '9H', '8H']),
+  1,
+);
