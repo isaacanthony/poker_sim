@@ -14,5 +14,3 @@ assert(
 
 // Test combines all 7-choose-5 card combos into hands
 assert(player.hands.length === 21)
-
-console.log(player.hands);

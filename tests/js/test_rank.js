@@ -54,8 +54,29 @@ assert(rank.fourKindValue(['3S', '3H', '3C', '4H', '5H']) === 0);
 assert(rank.fourKindValue(['3S', '3H', '3C', '3D', '5H']) === 3 + 3 + 3 + 3 + 5);
 assert(rank.fourKindValue(['3S', '5D', '5S', '5C', '5H']) === 3 + 5 + 5 + 5 + 5);
 
-// Test straight flush value
-assert(rank.straightFlushValue(['8H', '9H', 'JD', 'QD', 'QS']) === 0); // no straight, no flush
-assert(rank.straightFlushValue(['8H', '9H', '10D', 'JD', 'QS']) === 0); // straight, no flush
-assert(rank.straightFlushValue(['8H', '9H', 'JH', 'QH', 'KH']) === 0); // no straight, flush
-assert(rank.straightFlushValue(['8H', '9H', '10H', 'JH', 'QH']) === 8 + 9 + 10 + 11 + 12);
+// Test straightFlushValue()
+assert(rank.straightFlushValue(['8H', '9H', 'JD', 'QD', 'QS']).length === 0); // no straight, no flush
+assert(rank.straightFlushValue(['8H', '9H', '10D', 'JD', 'QS']).length === 0); // straight, no flush
+assert(rank.straightFlushValue(['8H', '9H', 'JH', 'QH', 'KH']).length === 0); // no straight, flush
+
+assert(
+  JSON.stringify(rank.straightFlushValue(['8H', '9H', '10H', 'JH', 'QH'])) ===
+    JSON.stringify(['QH', 'JH', '10H', '9H', '8H'])
+);
+
+// Test compareHands(): straight flush
+assert(
+  rank.compareHands(['8H', '9H', '10H', 'JH', 'QH'], ['2S', '3H', '5D', '8H', 'JS']) === -1
+);
+
+assert(
+  rank.compareHands(['2S', '3H', '5D', '8H', 'JS'], ['8H', '9H', '10H', 'JH', 'QH']) === 1
+);
+
+assert(
+  rank.compareHands(['9H', '10H', 'JH', 'QH', 'KH'], ['8H', '9H', '10H', 'JH', 'QH']) === -1
+);
+
+assert(
+  rank.compareHands(['7H', '8H', '9H', '10H', 'JH'], ['8H', '9H', '10H', 'JH', 'QH']) === 1
+);

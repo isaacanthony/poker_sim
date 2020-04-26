@@ -3,17 +3,27 @@
 let Rank = class {
   constructor() {}
 
-  // getScore(hand) {
-  //   if (this.isStraightFlush(hand)) return {text:'Straight Flush<br>(+250)',coins:250};
-  //   if (this.isFourKind(hand)) return {text:'Four of a Kind<br>(+125)',coins:125};
-  //   if (this.isFullHouse(hand)) return {text:'Full House<br>(+45)',coins:45};
-  //   if (this.isFlush(hand)) return {text:'Flush<br>(+30)',coins:30};
-  //   if (this.isStraight(hand)) return {text:'Straight<br>(+20)',coins:20};
-  //   if (this.isThreeKind(hand)) return {text:'Three of a Kind<br>(+15)',coins:15};
-  //   if (this.isTwoPair(hand)) return {text:'Two Pair<br>(+10)',coins:10};
-  //   if (this.isPair(hand)) return {text:'Pair<br>(+5)',coins:5};
-  //   return {text:'High Card<br>(+0)',coins:0};
-  // }
+  compareHands(h1, h2) {
+    let diff = 0;
+
+    // Straight flush
+    diff = this.compareHand(this.straightFlushValue(h1), this.straightFlushValue(h2));
+    if (diff) return diff;
+
+    return diff;
+  }
+
+  compareHand(h1, h2) {
+    if (h1.length && !h2.length) return -1;
+    if (!h1.length && h2.length) return 1;
+
+    for (let i = 0; i < 4; i++) {
+      if (this.cardValue(h1[i]) > this.cardValue(h2[i])) return -1;
+      if (this.cardValue(h1[i]) < this.cardValue(h2[i])) return 1;
+    }
+
+    return 0;
+  }
 
   cardValue(c) {
     let cValue = c.slice(0, -1);
@@ -120,8 +130,8 @@ let Rank = class {
 
   straightFlushValue(h) {
     if (this.straightValue(h) && this.flushValue(h))
-      return this.highCardValue(h);
+      return h.reverse();
 
-    return 0;
+    return [];
   }
 };
