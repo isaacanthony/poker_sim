@@ -53,3 +53,9 @@ assert(rank.fullHouseValue(['4S', '4C', 'JD', 'JH', 'JS']) === 4 + 4 + 11 + 11 +
 assert(rank.fourKindValue(['3S', '3H', '3C', '4H', '5H']) === 0);
 assert(rank.fourKindValue(['3S', '3H', '3C', '3D', '5H']) === 3 + 3 + 3 + 3 + 5);
 assert(rank.fourKindValue(['3S', '5D', '5S', '5C', '5H']) === 3 + 5 + 5 + 5 + 5);
+
+// Test straight flush value
+assert(rank.straightFlushValue(['8H', '9H', 'JD', 'QD', 'QS']) === 0); // no straight, no flush
+assert(rank.straightFlushValue(['8H', '9H', '10D', 'JD', 'QS']) === 0); // straight, no flush
+assert(rank.straightFlushValue(['8H', '9H', 'JH', 'QH', 'KH']) === 0); // no straight, flush
+assert(rank.straightFlushValue(['8H', '9H', '10H', 'JH', 'QH']) === 8 + 9 + 10 + 11 + 12);

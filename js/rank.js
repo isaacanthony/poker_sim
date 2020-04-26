@@ -118,7 +118,10 @@ let Rank = class {
     return 0;
   }
 
-  isStraightFlush(h) {
-    return this.isStraight(h) && this.isFlush(h);
+  straightFlushValue(h) {
+    if (this.straightValue(h) && this.flushValue(h))
+      return this.highCardValue(h);
+
+    return 0;
   }
 }
