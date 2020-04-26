@@ -2,4 +2,3 @@
 
 let deck = new Deck();
 let hand = new Hand(deck);
-hand.reset();
