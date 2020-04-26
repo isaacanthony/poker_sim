@@ -6,8 +6,8 @@
 - [x] Allow player to specify flop
 - [x] Allow player to specify turn
 - [x] Allow player to specify river
-- [ ] Add new hand button
-- [ ] Add fontawesome font icons
+- [x] Add new hand button
+- [x] Add fontawesome font icons
 - [ ] Specify players that have folded
 - [ ] Shuffle remaining cards
 
