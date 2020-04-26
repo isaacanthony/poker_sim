@@ -132,7 +132,7 @@ assertEqual(
   ['QH', 'JH', '10H', '9H', '8H'],
 );
 
-// Test compareHands(): straight flush
+// Test compareHands()
 assertEqual(
   rank.compareHands(['QH', 'JH', '10H', '9H', '8H'], ['JS', '8H', '5D', '3H', '2S']),
   -1,
@@ -152,3 +152,14 @@ assertEqual(
   rank.compareHands(['JH', '10H', '9H', '8H', '7H'], ['QH', 'JH', '10H', '9H', '8H']),
   1,
 );
+
+assertEqual(
+  rank.compareHands(['QH', 'JH', '10H', '9H', '8H'], ['QH', 'JH', '10H', '9H', '8H']),
+  0,
+);
+
+// Test compareHands(): high card
+assertEqual(
+  rank.compareHands(['AS', 'KS', 'JS', '7H', '2S'], ['JD', '9H', '5H', '4S', '3H']),
+  -1,
+)

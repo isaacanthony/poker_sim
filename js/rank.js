@@ -39,14 +39,14 @@ let Rank = class {
     if (diff) return diff;
 
     // High card
-    return compareHand(h1, h2);
+    return this.compareHand(h1, h2);
   }
 
   compareHand(h1, h2) {
     if (h1.length && !h2.length) return -1;
     if (!h1.length && h2.length) return 1;
 
-    for (let i = 0; i < 4; i++) {
+    for (let i = 0; i < 5; i++) {
       if (this.cardValue(h1[i]) > this.cardValue(h2[i])) return -1;
       if (this.cardValue(h1[i]) < this.cardValue(h2[i])) return 1;
     }
@@ -55,6 +55,7 @@ let Rank = class {
   }
 
   cardValue(c) {
+    if (!c) return 0;
     let cValue = c.slice(0, -1);
     return {'J': 11, 'Q': 12, 'K': 13, 'A': 14}[cValue] || cValue * 1;
   }
