@@ -64,8 +64,10 @@ let Deck = class {
   }
 
   shuffle() {
-    console.log('shuffling');
     this.index = 0;
+
+    for (let j, x, i = this.cards.length; i; j = Math.floor(Math.random() * i),
+      x = this.cards[--i], this.cards[i] = this.cards[j], this.cards[j] = x);
   }
 
   dealCard() {

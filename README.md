@@ -9,7 +9,12 @@
 - [x] Add new hand button
 - [x] Add fontawesome font icons
 - [x] Specify players that have folded
-- [ ] Shuffle remaining cards
+- [x] Add testing framework
+- [ ] Get value of first 5 cards
+- [ ] Get value of best 5 cards (7 choose 5 = 21 possiblities)
+- [ ] Compare hand to dummy opponent hand
+- [ ] Simulate hands
+- [ ] Show % chance of winning
 
 ## Scraping Playing Card Icons
 https://commons.wikimedia.org/wiki/Category:SVG_playing_cards
