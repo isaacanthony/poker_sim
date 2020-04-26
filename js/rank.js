@@ -104,14 +104,18 @@ let Rank = class {
     return 0;
   }
 
-  isFourKind(h) {
+  fourKindValue(h) {
     if (this.cardValue(h[0]) === this.cardValue(h[1]) &&
-        this.cardValue(h[0]) === this.cardValue(h[2]) &&
-        this.cardValue(h[0]) === this.cardValue(h[3])) return true;
-    if (this.cardValue(h[4]) === this.cardValue(h[1]) &&
-        this.cardValue(h[4]) === this.cardValue(h[2]) &&
-        this.cardValue(h[4]) === this.cardValue(h[3])) return true;
-    return false;
+      this.cardValue(h[0]) === this.cardValue(h[2]) &&
+      this.cardValue(h[0]) === this.cardValue(h[3]))
+      return this.highCardValue(h);
+
+    if (this.cardValue(h[1]) === this.cardValue(h[2]) &&
+      this.cardValue(h[1]) === this.cardValue(h[3]) &&
+      this.cardValue(h[1]) === this.cardValue(h[4]))
+      return this.highCardValue(h);
+
+    return 0;
   }
 
   isStraightFlush(h) {

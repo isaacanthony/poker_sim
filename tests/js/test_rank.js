@@ -48,3 +48,8 @@ assert(rank.flushValue(['8H', '10H', 'JH', 'QH', 'KH']) === 8 + 10 + 11 + 12 + 1
 assert(rank.fullHouseValue(['4S', '4C', '4D', 'JH', 'QH']) === 0);
 assert(rank.fullHouseValue(['4S', '4C', '4D', 'JH', 'JS']) === 4 + 4 + 4 + 11 + 11);
 assert(rank.fullHouseValue(['4S', '4C', 'JD', 'JH', 'JS']) === 4 + 4 + 11 + 11 + 11);
+
+// Test fourKindValue()
+assert(rank.fourKindValue(['3S', '3H', '3C', '4H', '5H']) === 0);
+assert(rank.fourKindValue(['3S', '3H', '3C', '3D', '5H']) === 3 + 3 + 3 + 3 + 5);
+assert(rank.fourKindValue(['3S', '5D', '5S', '5C', '5H']) === 3 + 5 + 5 + 5 + 5);
