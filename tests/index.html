@@ -18,9 +18,9 @@
       if (b instanceof Array) b = JSON.stringify(b);
 
       if (a !== b) {
+        console.assert(a === b);
         console.log(a);
         console.log(b);
-        console.assert(a === b);
       }
     };
   </script>

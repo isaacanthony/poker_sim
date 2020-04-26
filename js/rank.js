@@ -7,10 +7,34 @@ let Rank = class {
     let diff = 0;
 
     // Straight flush
-    diff = this.compareHand(this.straightFlushValue(h1), this.straightFlushValue(h2));
+    diff = this.compareHand(this.straightFlush(h1), this.straightFlush(h2));
     if (diff) return diff;
 
-    // High card value
+    // Full house
+    diff = this.compareHand(this.fullHouse(h1), this.fullHouse(h2));
+    if (diff) return diff;
+
+    // Flush
+    diff = this.compareHand(this.flush(h1), this.flush(h2));
+    if (diff) return diff;
+
+    // Straight
+    diff = this.compareHand(this.straight(h1), this.straight(h2));
+    if (diff) return diff;
+
+    // Three kind
+    diff = this.compareHand(this.threeKind(h1), this.threeKind(h2));
+    if (diff) return diff;
+
+    // Two pair
+    diff = this.compareHand(this.twoPair(h1), this.twoPair(h2));
+    if (diff) return diff;
+
+    // Pair
+    diff = this.compareHand(this.pair(h1), this.pair(h2));
+    if (diff) return diff;
+
+    // High card
     return compareHand(h1, h2);
   }
 
@@ -35,11 +59,7 @@ let Rank = class {
     return c.slice(-1);
   }
 
-  highCardValue(h) {
-    return h.reduce((total, c) => { return total + this.cardValue(c); }, 0);
-  }
-
-  pairValue(h) {
+  pair(h) {
     for (let i = 0; i < 4; i++) {
       if (this.cardValue(h[i]) === this.cardValue(h[i + 1]))
         return [h[i], h[i + 1]].concat(h.filter((c) => ![h[i], h[i + 1]].includes(c)));
@@ -48,7 +68,7 @@ let Rank = class {
     return [];
   }
 
-  twoPairValue(h) {
+  twoPair(h) {
     if (this.cardValue(h[0]) === this.cardValue(h[1]) && this.cardValue(h[2]) === this.cardValue(h[3])) {
       if (this.cardValue(h[0]) > this.cardValue(h[2]))
         return [h[0], h[1], h[2], h[3], h[4]];
@@ -73,7 +93,7 @@ let Rank = class {
     return [];
   }
 
-  threeKindValue(h) {
+  threeKind(h) {
     if (this.cardValue(h[0]) === this.cardValue(h[1]) && this.cardValue(h[0]) === this.cardValue(h[2])) {
       if (this.cardValue(h[3]) > this.cardValue(h[4]))
         return [h[0], h[1], h[2], h[3], h[4]];
@@ -98,57 +118,57 @@ let Rank = class {
     return [];
   }
 
-  straightValue(h) {
+  straight(h) {
     let cValues = h.map(this.cardValue);
 
-    if (JSON.stringify(cValues) === JSON.stringify([2, 3, 4, 5, 14]))
-      return 1 + 2 + 3 + 4 + 5;
+    if (JSON.stringify(cValues) === JSON.stringify([14, 5, 4, 3, 2]))
+      return [h[1], h[2], h[3], h[4], h[0]];
 
     for (let i = 0; i < 4; i++) {
-      if (cValues[i] !== cValues[i + 1] - 1) return [];
+      if (cValues[i] !== cValues[i + 1] + 1) return [];
     }
 
-    return this.highCardValue(h);
+    return h;
   }
 
-  flushValue(h) {
+  flush(h) {
     for (var i = 0; i < 4; i++) {
       if (this.cardSuit(h[i]) !== this.cardSuit(h[i + 1])) return [];
     }
 
-    return this.highCardValue(h);
+    return h;
   }
 
-  fullHouseValue(h) {
+  fullHouse(h) {
     if (this.cardValue(h[0]) === this.cardValue(h[1]) &&
       this.cardValue(h[0]) === this.cardValue(h[2]) &&
       this.cardValue(h[3]) === this.cardValue(h[4]))
-      return this.highCardValue(h);
+      return [h[0], h[1], h[2], h[3], h[4]];
 
     if (this.cardValue(h[0]) === this.cardValue(h[1]) &&
       this.cardValue(h[2]) === this.cardValue(h[3]) &&
       this.cardValue(h[2]) === this.cardValue(h[4]))
-      return this.highCardValue(h);
+      return [h[2], h[3], h[4], h[0], h[1]];
 
     return [];
   }
 
-  fourKindValue(h) {
+  fourKind(h) {
     if (this.cardValue(h[0]) === this.cardValue(h[1]) &&
       this.cardValue(h[0]) === this.cardValue(h[2]) &&
       this.cardValue(h[0]) === this.cardValue(h[3]))
-      return this.highCardValue(h);
+      return this.highcardValue(h);
 
     if (this.cardValue(h[1]) === this.cardValue(h[2]) &&
       this.cardValue(h[1]) === this.cardValue(h[3]) &&
       this.cardValue(h[1]) === this.cardValue(h[4]))
-      return this.highCardValue(h);
+      return this.highcardValue(h);
 
     return [];
   }
 
-  straightFlushValue(h) {
-    if (this.straightValue(h).length && this.flushValue(h).length) return h;
+  straightFlush(h) {
+    if (this.straight(h).length && this.flush(h).length) return h;
     return [];
   }
 };

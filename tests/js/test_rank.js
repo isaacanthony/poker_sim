@@ -15,81 +15,101 @@ assertEqual(rank.cardSuit('2S'), 'S');
 assertEqual(rank.cardSuit('10D'), 'D');
 assertEqual(rank.cardSuit('AC'), 'C');
 
-// Test pairValue()
-assertEqual(rank.pairValue(['8S', '7S', '6S', '5S', '4S']), []);
+// Test pair()
+assertEqual(rank.pair(['8S', '7S', '6S', '5S', '4S']), []);
 
 assertEqual(
-  rank.pairValue(['6H', '5H', '5S', '4H', '3S']),
+  rank.pair(['6H', '5H', '5S', '4H', '3S']),
   ['5H', '5S', '6H', '4H', '3S'],
 );
 
 assertEqual(
-  rank.pairValue(['AH', 'KH', 'JH', '2S', '2D']),
+  rank.pair(['AH', 'KH', 'JH', '2S', '2D']),
   ['2S', '2D', 'AH', 'KH', 'JH'],
 )
 
-// Test twoPairValue()
-assertEqual(rank.twoPairValue(['6S', '5H', '5S', '4S', '3S']), []);
+// Test twoPair()
+assertEqual(rank.twoPair(['6S', '5H', '5S', '4S', '3S']), []);
 
 assertEqual(
-  rank.twoPairValue(['QD', '7H', '7S', '2S', '2H']),
+  rank.twoPair(['QD', '7H', '7S', '2S', '2H']),
   ['7H', '7S', '2S', '2H', 'QD'],
 );
 
 assertEqual(
-  rank.twoPairValue(['QH', 'QD', 'JS', '2S', '2H']),
+  rank.twoPair(['QH', 'QD', 'JS', '2S', '2H']),
   ['QH', 'QD', '2S', '2H', 'JS'],
 );
 
 assertEqual(
-  rank.twoPairValue(['JH', 'JC', '6D', '6S', '4H']),
+  rank.twoPair(['JH', 'JC', '6D', '6S', '4H']),
   ['JH', 'JC', '6D', '6S', '4H'],
 );
 
-// Test threeKindValue()
-assertEqual(rank.threeKindValue(['JH', 'JC', '6D', '6S', '4H']), []);
+// Test threeKind()
+assertEqual(rank.threeKind(['JH', 'JC', '6D', '6S', '4H']), []);
 
 assertEqual(
-  rank.threeKindValue(['KC', 'JH', '4H', '4D', '4S']),
+  rank.threeKind(['KC', 'JH', '4H', '4D', '4S']),
   ['4H', '4D', '4S', 'KC', 'JH'],
 );
 
 assertEqual(
-  rank.threeKindValue(['JC', '6D', '6S', '6H', '4H']),
+  rank.threeKind(['JC', '6D', '6S', '6H', '4H']),
   ['6D', '6S', '6H', 'JC', '4H'],
 );
 
 assertEqual(
-  rank.threeKindValue(['JS', 'JH', 'JC', '6D', '4H']),
+  rank.threeKind(['JS', 'JH', 'JC', '6D', '4H']),
   ['JS', 'JH', 'JC', '6D', '4H'],
 );
 
-// Test straightValue()
-assertEqual(rank.straightValue(['7H', '9H', '10D', 'JH', 'QD']), []);
-// assertEqual(rank.straightValue(['7H', '8H', '9D', '10H', 'JD']) === 7 + 8 + 9 + 10 + 11);
-// assertEqual(rank.straightValue(['2H', '3C', '4S', '5S', 'AD']) === 1 + 2 + 3 + 4 + 5);
+// Test straight()
+assertEqual(rank.straight(['QD', 'JH', '10D', '9H', '7H']), []);
 
-// Test flushValue()
-assertEqual(rank.flushValue(['8H', '10H', 'JS', 'JH', 'QH']), []);
-// assertEqual(rank.flushValue(['8H', '10H', 'JH', 'QH', 'KH']) === 8 + 10 + 11 + 12 + 13);
+assertEqual(
+  rank.straight(['JD', '10H', '9D', '8H', '7H']),
+  ['JD', '10H', '9D', '8H', '7H'],
+);
 
-// Test fullHouseValue()
-assertEqual(rank.fullHouseValue(['4S', '4C', '4D', 'JH', 'QH']), []);
-// assertEqual(rank.fullHouseValue(['4S', '4C', '4D', 'JH', 'JS']) === 4 + 4 + 4 + 11 + 11);
-// assertEqual(rank.fullHouseValue(['4S', '4C', 'JD', 'JH', 'JS']) === 4 + 4 + 11 + 11 + 11);
+assertEqual(
+  rank.straight(['AD', '5S', '4S', '3C', '2H']),
+  ['5S', '4S', '3C', '2H', 'AD'],
+);
 
-// Test fourKindValue()
-assertEqual(rank.fourKindValue(['5C', '4H', '3C', '3S', '3H']), []);
-// assertEqual(rank.fourKindValue(['3S', '3H', '3C', '3D', '5H']) === 3 + 3 + 3 + 3 + 5);
-// assertEqual(rank.fourKindValue(['3S', '5D', '5S', '5C', '5H']) === 3 + 5 + 5 + 5 + 5);
+// Test flush()
+assertEqual(rank.flush(['QH', 'JH', 'JS', '10H', '8H']), []);
 
-// Test straightFlushValue()
-assertEqual(rank.straightFlushValue(['QS', 'QD', 'JD', '9H', '8H']), []); // no straight, no flush
-// assertEqual(rank.straightFlushValue(['8H', '9H', '10D', 'JD', 'QS']).length === 0); // straight, no flush
-// assertEqual(rank.straightFlushValue(['8H', '9H', 'JH', 'QH', 'KH']).length === 0); // no straight, flush
+assertEqual(
+  rank.flush(['KH', 'QH', 'JH', '10H', '8H']),
+  ['KH', 'QH', 'JH', '10H', '8H'],
+);
+
+// Test fullHouse()
+assertEqual(rank.fullHouse(['QH', 'JH', '4S', '4C', '4D']), []);
+
+assertEqual(
+  rank.fullHouse(['JH', 'JS', '4S', '4C', '4D']),
+  ['4S', '4C', '4D', 'JH', 'JS'],
+);
+
+assertEqual(
+  rank.fullHouse(['JD', 'JH', 'JS', '4S', '4C']),
+  ['JD', 'JH', 'JS', '4S', '4C'],
+);
+
+// Test fourKind()
+assertEqual(rank.fourKind(['5C', '4H', '3C', '3S', '3H']), []);
+// assertEqual(rank.fourKind(['3S', '3H', '3C', '3D', '5H']) === 3 + 3 + 3 + 3 + 5);
+// assertEqual(rank.fourKind(['3S', '5D', '5S', '5C', '5H']) === 3 + 5 + 5 + 5 + 5);
+
+// Test straightFlush()
+assertEqual(rank.straightFlush(['QS', 'QD', 'JD', '9H', '8H']), []); // no straight, no flush
+// assertEqual(rank.straightFlush(['8H', '9H', '10D', 'JD', 'QS']).length === 0); // straight, no flush
+// assertEqual(rank.straightFlush(['8H', '9H', 'JH', 'QH', 'KH']).length === 0); // no straight, flush
 
 // assertEqual(
-//   rank.straightFlushValue(['QH', 'JH', '10H', '9H', '8H']),
+//   rank.straightFlush(['QH', 'JH', '10H', '9H', '8H']),
 //   ['QH', 'JH', '10H', '9H', '8H'],
 // );
 
