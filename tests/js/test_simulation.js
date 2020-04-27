@@ -26,4 +26,3 @@ assertEqual(Object.keys(results['players']).includes('p2'), false);
 // );
 
 // console.log(results);
-// simulation.simulate();

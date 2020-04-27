@@ -1,8 +1,9 @@
 # poker_sim
 
 ## TODO
-- [ ] Debug win percentages, add tests
+- [ ] Add tests
 - [ ] Specify number of simulations to run
+- [ ] When reset leave cards, add clear? functionality
 
 ## Scraping Playing Card Icons
 https://commons.wikimedia.org/wiki/Category:SVG_playing_cards

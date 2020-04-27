@@ -1,15 +1,18 @@
 'use strict';
 
 let Canvas = class {
-  static updatePlayerWins(playerId, wins, total_runs) {
-    let winPct = Math.round(wins * 100.0 / total_runs);
+  static updatePlayerWins(playerWins, totalRuns) {
+    Object.keys(playerWins).forEach((playerId) => {
+      let winPct = Math.round(playerWins[playerId] * 100.0 / totalRuns);
 
-    if (document.querySelector(`.${playerId}-win-pct`))
-      document.querySelector(`.${playerId}-win-pct`).innerHTML = winPct + '%';
+      if (document.querySelector(`.${playerId}-win-pct`))
+        document.querySelector(`.${playerId}-win-pct`).innerHTML = winPct + '%';
+    });
   }
 
   static resetPlayerWins(playerId) {
-    Canvas.updatePlayerWins(playerId, 0, 1);
+    if (document.querySelector(`.${playerId}-win-pct`))
+      document.querySelector(`.${playerId}-win-pct`).innerHTML = '0%';
   }
 
   static updateProgress(count, total) {

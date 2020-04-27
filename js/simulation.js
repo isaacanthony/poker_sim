@@ -63,8 +63,8 @@ let Simulation = class {
     let players = Object.keys(this.hand.players).filter((player) => {
       return this.hand.players[player];
     }).reduce((hsh, player) => {
-      if (player == 'p0') {
-        hsh[player] = [this.hand.card1, this.hand.card2];
+      if (player === 'p0') {
+        hsh[player] = [this.hand.cards['card1'], this.hand.cards['card2']];
       } else {
         hsh[player] = [cards[index += 1], cards[index += 1]];
       }
@@ -111,7 +111,7 @@ let Simulation = class {
     }
 
     this.totalRuns += 1;
-    Canvas.updatePlayerWins(winnerId, this.playerWins[winnerId], this.totalRuns);
+    Canvas.updatePlayerWins(this.playerWins, this.totalRuns);
 
     return {
       'cards': cards,
