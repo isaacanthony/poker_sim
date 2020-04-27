@@ -23,6 +23,7 @@ let Simulation = class {
 
   simulate() {
     this.running = true;
+    Canvas.freezeInput();
     Canvas.disableBtn('run');
     Canvas.enableBtn('stop');
 

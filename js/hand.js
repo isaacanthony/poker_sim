@@ -48,7 +48,11 @@ let Hand = class {
     if (document.querySelector(`.${cardType}`))
       document.querySelector(`.${cardType}`).src = this.deck.back;
 
-    if (!['card1', 'card2'].includes(cardType)) Canvas.disableInput(cardType);
+    if (['card1', 'card2'].includes(cardType)) {
+      Canvas.enableInput(cardType);
+    } else {
+      Canvas.disableInput(cardType);
+    }
   }
 
   updateCard(cardType, cardValue = null) {

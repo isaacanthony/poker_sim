@@ -46,4 +46,14 @@ let Canvas = class {
     if (document.querySelector(`.${cls}-input`))
       document.querySelector(`.${cls}-input`).disabled = true;
   }
+
+  static freezeInput() {
+    // Disable fold buttons
+    if (document.querySelectorAll('.btn-fold').length)
+      document.querySelectorAll('.btn-fold').forEach((btn) => btn.disabled = true);
+
+    // Disable card inputs
+    if (document.querySelectorAll('.card-input').length)
+      document.querySelectorAll('.card-input').forEach((input) => input.disabled = true);
+  }
 };
