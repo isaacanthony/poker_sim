@@ -59,4 +59,19 @@ let Canvas = class {
     if (document.querySelectorAll('.card-input').length)
       document.querySelectorAll('.card-input').forEach((input) => input.disabled = true);
   }
+
+  static enableAllInput(hand) {
+    Object.values(hand).forEach(Canvas.disableInput);
+    ['card1', 'card2'].forEach(Canvas.enableInput);
+
+    if (hand['card1'] && hand['card2']) {
+      Canvas.enableBtn('run');
+      ['flop1', 'flop2', 'flop3'].forEach(Canvas.enableInput);
+    }
+
+    if (hand['flop1'] && hand['flop2'] && hand['flop3'])
+      Canvas.enableInput('turn');
+
+    if (hand['turn']) Canvas.enableInput('river');
+  }
 };

@@ -30,16 +30,25 @@ let Hand = class {
   }
 
   reset() {
-    Object.keys(this.cards).forEach((cardType) => {
-      this.resetCard(cardType);
-    });
+    Canvas.enableAllInput(this.cards);
 
     Object.keys(this.players).forEach((playerId) => {
       this.resetPlayer(playerId);
     });
+
   }
 
-  resetCard(cardType) {
+  clear() {
+    this.reset();
+
+    Object.keys(this.cards).forEach((cardType) => {
+      this.clearCard(cardType);
+    });
+
+    Canvas.enableAllInput(this.cards);
+  }
+
+  clearCard(cardType) {
     this.cards[cardType] = null;
 
     if (document.querySelector(`.${cardType}-input`))
@@ -47,12 +56,6 @@ let Hand = class {
 
     if (document.querySelector(`.${cardType}`))
       document.querySelector(`.${cardType}`).src = this.deck.back;
-
-    if (['card1', 'card2'].includes(cardType)) {
-      Canvas.enableInput(cardType);
-    } else {
-      Canvas.disableInput(cardType);
-    }
   }
 
   updateCard(cardType, cardValue = null) {
@@ -67,19 +70,11 @@ let Hand = class {
       if (document.querySelector(`.${cardType}`))
         document.querySelector(`.${cardType}`).src = this.deck.getUrl(cardValue);
     } else {
-      this.resetCard(cardType);
+      this.clearCard(cardType);
     }
 
     // Enable new cards for input
-    if (this.cards['card1'] && this.cards['card2']) {
-      Canvas.enableBtn('run');
-      ['flop1', 'flop2', 'flop3'].forEach(Canvas.enableInput);
-    }
-
-    if (this.cards['flop1'] && this.cards['flop2'] && this.cards['flop3'])
-      Canvas.enableInput('turn');
-
-    if (this.cards['turn']) Canvas.enableInput('river');
+    Canvas.enableAllInput(this.cards);
   }
 
   fold(playerId) {

@@ -18,7 +18,7 @@ let Simulation = class {
     this.running = true;
     this.totalRuns = 0;
     this.playerWins = {};
-    this.hand.reset();
+    hand.reset();
   }
 
   simulate() {
