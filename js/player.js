@@ -8,9 +8,9 @@ let Player = class {
 
   bestHand() {
     // Sort cards in each hand
-    // this.hands.map((hand) => {
-    //
-    // });
+    this.hands.map((hand) => {
+      hand.sort((a, b) => Rank.cardValue(b) - Rank.cardValue(a));
+    });
 
     // Sort hands
     this.hands.sort(Rank.compareHands);

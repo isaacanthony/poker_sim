@@ -12,4 +12,8 @@ assertEqual(player.cards, ['10H', 'JH', 'QH', 'KH', 'AH', 'AS', 'AD']);
 // Test combines all 7-choose-5 card combos into hands
 assertEqual(player.hands.length, 21)
 
-console.log(player.bestHand());
+// Test best hand
+assertEqual(
+  player.bestHand(),
+  ['AH', 'KH', 'QH', 'JH', '10H'],
+);

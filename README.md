@@ -13,7 +13,7 @@
 - [x] Build out ranking logic (two pair vs. high card etc.)
 - [x] Get value of first 5 cards
 - [x] Have all inputs into hand ranking be descending order
-- [ ] Get value of best 5 cards (7 choose 5 = 21 possiblities)
+- [x] Get value of best 5 cards (7 choose 5 = 21 possiblities)
 - [ ] Compare hand to dummy opponent hand
 - [ ] Simulate hands
 - [ ] Show % chance of winning
