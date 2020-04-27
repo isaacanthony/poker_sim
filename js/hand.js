@@ -47,6 +47,8 @@ let Hand = class {
 
     if (document.querySelector(`.${cardType}`))
       document.querySelector(`.${cardType}`).src = this.deck.back;
+
+    if (!['card1', 'card2'].includes(cardType)) Canvas.disableInput(cardType);
   }
 
   updateCard(cardType, cardValue = null) {
@@ -64,7 +66,16 @@ let Hand = class {
       this.resetCard(cardType);
     }
 
-    if (this.cards['card1'] && this.cards['card2']) Canvas.enableBtn('run');
+    // Enable new cards for input
+    if (this.cards['card1'] && this.cards['card2']) {
+      Canvas.enableBtn('run');
+      ['flop1', 'flop2', 'flop3'].forEach(Canvas.enableInput);
+    }
+
+    if (this.cards['flop1'] && this.cards['flop2'] && this.cards['flop3'])
+      Canvas.enableInput('turn');
+
+    if (this.cards['turn']) Canvas.enableInput('river');
   }
 
   fold(playerId) {

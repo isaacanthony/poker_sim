@@ -36,4 +36,14 @@ let Canvas = class {
       document.querySelector(`.btn-${cls}`).classList.remove('disabled');
     }
   }
+
+  static enableInput(cls) {
+    if (document.querySelector(`.${cls}-input`))
+      document.querySelector(`.${cls}-input`).disabled = false;
+  }
+
+  static disableInput(cls) {
+    if (document.querySelector(`.${cls}-input`))
+      document.querySelector(`.${cls}-input`).disabled = true;
+  }
 };
