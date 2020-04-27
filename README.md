@@ -2,7 +2,8 @@
 
 ## TODO
 - [ ] Debug win percentages, add tests
-- [ ] Add loading bar for simulation
+- [ ] Add back stop button
+- [ ] Specify number of simulations to run
 
 ## Scraping Playing Card Icons
 https://commons.wikimedia.org/wiki/Category:SVG_playing_cards

@@ -4,36 +4,32 @@ let Simulation = class {
   constructor(deck, hand) {
     this.deck = deck;
     this.hand = hand;
+    this.maxRuns = 1000;
     this.totalRuns = 0;
     this.playerWins = {};
   }
 
   reset() {
     Object.keys(this.playerWins).forEach(Canvas.resetPlayerWins);
+    Canvas.resetProgress();
     this.totalRuns = 0;
     this.playerWins = {};
     this.hand.reset();
   }
 
   simulate() {
-    let results = {};
-    let winnerId = null;
+    let timeoutLoop = (i = 0) => {
+      if (!this.hand.cards['card1'] || !this.hand.cards['card2']) return;
 
-    for (let i = 0; i < 1000; i++) {
-      if (!this.hand.cards['card1'] || !this.hand.cards['card2']) break;
+      this.run();
+      Canvas.updateProgress(i, this.maxRuns);
 
-      results = this.run();
-      winnerId = results['players'][0]['id'];
-
-      if (this.playerWins[winnerId]) {
-        this.playerWins[winnerId] += 1;
-      } else {
-        this.playerWins[winnerId] = 1;
+      if (i < this.maxRuns) {
+        window.setTimeout(() => timeoutLoop(i + 1), 1);
       }
-
-      this.totalRuns += 1;
-      Canvas.updatePlayerWins(winnerId, this.playerWins[winnerId], this.totalRuns);
     }
+
+    window.setTimeout(timeoutLoop, 1);
   }
 
   run() {
@@ -87,6 +83,18 @@ let Simulation = class {
     }).sort((player1, player2) => {
       return Rank.compareHands(player1.bestHand, player2.bestHand);
     });
+
+    // Record winner
+    let winnerId = players[0]['id'];
+
+    if (this.playerWins[winnerId]) {
+      this.playerWins[winnerId] += 1;
+    } else {
+      this.playerWins[winnerId] = 1;
+    }
+
+    this.totalRuns += 1;
+    Canvas.updatePlayerWins(winnerId, this.playerWins[winnerId], this.totalRuns);
 
     return {
       'cards': cards,

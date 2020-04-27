@@ -204,12 +204,6 @@
             </div>
           </div>
         </div>
-
-        <div class="row">
-          <div class="col">
-            <p class="p0-win-pct lead">0%</p>
-          </div>
-        </div>
       </div>
 
       <div class="col">
@@ -235,7 +229,7 @@
     </div>
 
     <div class="row">
-      <div class="col">
+      <div class="col-3">
         <button type="button" class="btn btn-light" onclick="simulation.reset()">
           <i class="fa fa-refresh"></i> Reset
         </button>
@@ -243,6 +237,16 @@
         <button type="button" class="btn btn-success" onclick="simulation.simulate()">
           <i class="fa fa-play"></i> Run
         </button>
+      </div>
+
+      <div class="col-6">
+        <div class="progress">
+          <div class="progress-bar" role="progressbar" style="width: 0%"></div>
+        </div>
+      </div>
+
+      <div class="col-3">
+        <h2 class="p0-win-pct">0%</h2>
       </div>
     </div>
   </div>
