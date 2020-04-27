@@ -2,7 +2,6 @@
 
 ## TODO
 - [ ] Debug win percentages, add tests
-- [ ] Add back stop button
 - [ ] Specify number of simulations to run
 
 ## Scraping Playing Card Icons

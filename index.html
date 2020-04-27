@@ -230,12 +230,16 @@
 
     <div class="row">
       <div class="col-3">
-        <button type="button" class="btn btn-light" onclick="simulation.reset()">
+        <button type="button" class="btn btn-light btn-reset" onclick="simulation.reset()">
           <i class="fa fa-refresh"></i> Reset
         </button>
 
-        <button type="button" class="btn btn-success" onclick="simulation.simulate()">
+        <button type="button" class="btn btn-success btn-run disabled" onclick="simulation.simulate()" disabled>
           <i class="fa fa-play"></i> Run
+        </button>
+
+        <button type="button" class="btn btn-danger btn-stop disabled" onclick="simulation.stop()" disabled>
+          <i class="fa fa-stop"></i> Stop
         </button>
       </div>
 

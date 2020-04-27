@@ -22,4 +22,18 @@ let Canvas = class {
   static resetProgress() {
     Canvas.updateProgress(0, 1);
   }
+
+  static disableBtn(cls) {
+    if (document.querySelector(`.btn-${cls}`)) {
+      document.querySelector(`.btn-${cls}`).disabled = true;
+      document.querySelector(`.btn-${cls}`).classList.add('disabled');
+    }
+  }
+
+  static enableBtn(cls) {
+    if (document.querySelector(`.btn-${cls}`)) {
+      document.querySelector(`.btn-${cls}`).disabled = false;
+      document.querySelector(`.btn-${cls}`).classList.remove('disabled');
+    }
+  }
 };

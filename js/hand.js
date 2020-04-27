@@ -63,6 +63,8 @@ let Hand = class {
     } else {
       this.resetCard(cardType);
     }
+
+    if (this.cards['card1'] && this.cards['card2']) Canvas.enableBtn('run');
   }
 
   fold(playerId) {

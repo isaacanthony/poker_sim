@@ -4,6 +4,7 @@ let Simulation = class {
   constructor(deck, hand) {
     this.deck = deck;
     this.hand = hand;
+    this.running = true;
     this.maxRuns = 1000;
     this.totalRuns = 0;
     this.playerWins = {};
@@ -12,24 +13,39 @@ let Simulation = class {
   reset() {
     Object.keys(this.playerWins).forEach(Canvas.resetPlayerWins);
     Canvas.resetProgress();
+    Canvas.disableBtn('run');
+    Canvas.disableBtn('stop');
+    this.running = true;
     this.totalRuns = 0;
     this.playerWins = {};
     this.hand.reset();
   }
 
   simulate() {
+    this.running = true;
+    Canvas.disableBtn('run');
+    Canvas.enableBtn('stop');
+
     let timeoutLoop = (i = 0) => {
-      if (!this.hand.cards['card1'] || !this.hand.cards['card2']) return;
+      if (!this.running || !this.hand.cards['card1'] || !this.hand.cards['card2']) return;
 
       this.run();
       Canvas.updateProgress(i, this.maxRuns);
 
       if (i < this.maxRuns) {
         window.setTimeout(() => timeoutLoop(i + 1), 1);
+      } else {
+        Canvas.disableBtn('stop');
       }
     }
 
     window.setTimeout(timeoutLoop, 1);
+  }
+
+  stop() {
+    this.running = false;
+    Canvas.disableBtn('run');
+    Canvas.disableBtn('stop');
   }
 
   run() {
