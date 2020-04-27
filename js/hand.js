@@ -15,6 +15,8 @@ let Hand = class {
     };
 
     this.players = {
+      'p0': true,
+      'p1': true,
       'p1': true,
       'p2': true,
       'p3': true,
@@ -66,7 +68,7 @@ let Hand = class {
   fold(playerId) {
     this.players[playerId] = false;
 
-    [`.${playerId}c1`, `.${playerId}c2`, `.${playerId}-fold`].forEach((cls) => {
+    [`.${playerId}c1`, `.${playerId}c2`, `.${playerId}-fold`, `.${playerId}-win-pct`].forEach((cls) => {
       if (document.querySelector(cls))
         document.querySelector(cls).classList.add('folded');
     });
@@ -78,7 +80,7 @@ let Hand = class {
   resetPlayer(playerId) {
     this.players[playerId] = true;
 
-    [`.${playerId}c1`, `.${playerId}c2`, `.${playerId}-fold`].forEach((cls) => {
+    [`.${playerId}c1`, `.${playerId}c2`, `.${playerId}-fold`, `.${playerId}-win-pct`].forEach((cls) => {
       if (document.querySelector(cls))
         document.querySelector(cls).classList.remove('folded');
     });

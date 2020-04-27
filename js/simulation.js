@@ -4,6 +4,36 @@ let Simulation = class {
   constructor(deck, hand) {
     this.deck = deck;
     this.hand = hand;
+    this.totalRuns = 0;
+    this.playerWins = {};
+  }
+
+  reset() {
+    Object.keys(this.playerWins).forEach(Canvas.resetPlayerWins);
+    this.totalRuns = 0;
+    this.playerWins = {};
+    this.hand.reset();
+  }
+
+  simulate() {
+    let results = {};
+    let winnerId = null;
+
+    for (let i = 0; i < 1000; i++) {
+      if (!this.hand.cards['card1'] || !this.hand.cards['card2']) break;
+
+      results = this.run();
+      winnerId = results['players'][0]['id'];
+
+      if (this.playerWins[winnerId]) {
+        this.playerWins[winnerId] += 1;
+      } else {
+        this.playerWins[winnerId] = 1;
+      }
+
+      this.totalRuns += 1;
+      Canvas.updatePlayerWins(winnerId, this.playerWins[winnerId], this.totalRuns);
+    }
   }
 
   run() {
@@ -20,12 +50,43 @@ let Simulation = class {
     let players = Object.keys(this.hand.players).filter((player) => {
       return this.hand.players[player];
     }).reduce((hsh, player) => {
-      hsh[player] = [cards[index += 1], cards[index += 1]];
+      if (player == 'p0') {
+        hsh[player] = [this.hand.card1, this.hand.card2];
+      } else {
+        hsh[player] = [cards[index += 1], cards[index += 1]];
+      }
       return hsh;
     }, {});
 
-    // Deal flop, turn, river
-    let board = [1, 2, 3, 4, 5].map((_) => cards[index += 1])
+    // Deal flop
+    let board = [];
+
+    if (this.hand.cards['flop1'] && this.hand.cards['flop2'] && this.hand.cards['flop3']) {
+      board = [this.hand.cards['flop1'], this.hand.cards['flop2'], this.hand.cards['flop3']];
+    } else {
+      board = [cards[index += 1], cards[index += 1], cards[index += 1]];
+    }
+
+    // Deal turn
+    if (this.hand.cards['turn']) {
+      board.push(this.hand.cards['turn']);
+    } else {
+      board.push(cards[index += 1]);
+    }
+
+    // Deal river
+    if (this.hand.cards['river']) {
+      board.push(this.hand.cards['river']);
+    } else {
+      board.push(cards[index += 1]);
+    }
+
+    // Create players
+    players = Object.keys(players).map((playerId) => {
+      return new Player(playerId, board, players[playerId][0], players[playerId][1]);
+    }).sort((player1, player2) => {
+      return Rank.compareHands(player1.bestHand, player2.bestHand);
+    });
 
     return {
       'cards': cards,

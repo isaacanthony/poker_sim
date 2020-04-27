@@ -1,12 +1,11 @@
 'use strict';
 
 let Player = class {
-  constructor(board, card1, card2) {
+  constructor(id, board, card1, card2) {
+    this.id = id;
     this.cards = board.concat([card1, card2]);
     this.hands = this.combine(this.cards, 5);
-  }
 
-  bestHand() {
     // Sort cards in each hand
     this.hands.map((hand) => {
       hand.sort((a, b) => Rank.cardValue(b) - Rank.cardValue(a));
@@ -14,8 +13,7 @@ let Player = class {
 
     // Sort hands
     this.hands.sort(Rank.compareHands);
-
-    return this.hands[0];
+    this.bestHand = this.hands[0];
   }
 
   // source: https://stackoverflow.com/questions/5752002/find-all-possible-subset-combos-in-an-array

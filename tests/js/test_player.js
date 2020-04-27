@@ -1,6 +1,7 @@
 'use strict';
 
 let player = new Player(
+  'p1',
   ['10H', 'JH', 'QH', 'KH', 'AH'],
   'AS',
   'AD',
@@ -14,6 +15,6 @@ assertEqual(player.hands.length, 21)
 
 // Test best hand
 assertEqual(
-  player.bestHand(),
+  player.bestHand,
   ['AH', 'KH', 'QH', 'JH', '10H'],
 );

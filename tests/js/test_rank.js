@@ -44,6 +44,11 @@ assertEqual(
   ['JH', 'JC', '6D', '6S', '4H'],
 );
 
+assertEqual(
+  Rank.twoPair(['QC', 'QS', '9H', '5C', '5H']),
+  ['QC', 'QS', '5C', '5H', '9H'],
+);
+
 // Test threeKind()
 assertEqual(Rank.threeKind(['JH', 'JC', '6D', '6S', '4H']), []);
 

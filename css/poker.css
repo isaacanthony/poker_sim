@@ -5,3 +5,11 @@
 .folded {
   opacity: 0.65;
 }
+
+.win-pct {
+  padding-right: 5px;
+}
+
+.btn-folded {
+  padding-left: 0px;
+}

@@ -59,6 +59,7 @@ let Rank = class {
   }
 
   static cardSuit(c) {
+    if (!c) return '';
     return c.slice(-1);
   }
 
